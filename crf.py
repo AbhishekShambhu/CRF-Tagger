@@ -47,15 +47,14 @@ crfmodel = CRF()
 crfmodel.fit(X_train, y_train)
 
 #making predictions using model
-inputsentence = ['We','are','TeamBots','and','this','is','our','simple','implementation']
+inputsentence = ['simple','implementation','of','crf']
  
 def postagged(inputsentence):
     sentence_features = [feature(inputsentence, index) for index in range(len(inputsentence))]
     return list(zip(inputsentence, crfmodel.predict([sentence_features])[0]))
  
 print(postagged(inputsentence))    
-# [('We', 'PRP'), ('are', 'VBP'), ('TeamBots', 'NNS'), ('and', 'CC'), ('this', 'DT'), 
-# ('is', 'VBZ'), ('our', 'PRP$'), ('simple', 'JJ'), ('implementation', 'NN')]
+# [('simple', 'JJ'), ('implementation', 'NN'), ('of', 'IN'), ('crf', 'NN')]
 
 #computing the performance of the model
 from sklearn_crfsuite import metrics
